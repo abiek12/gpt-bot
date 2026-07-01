@@ -1,11 +1,11 @@
-import ChatLayout from "../components/chat/ChatLayout";
-import SideBar from "../components/chat/Sidebar/SideBar";
+import ChatArea from "../components/chat/ChatArea";
+import SideBar from "../components/chat/SideBar";
 
 const ChatPage = () => {
   return (
     <div>
       <SideBar />
-      <ChatLayout />
+      <ChatArea />
     </div>
   );
 };

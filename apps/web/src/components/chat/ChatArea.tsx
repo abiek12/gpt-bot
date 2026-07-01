@@ -2,7 +2,7 @@ import Header from "./Header/Header";
 import ChatInput from "./Input/ChatInput";
 import EmptyState from "./Message/EmptyState";
 
-const ChatLayout = () => {
+const ChatArea = () => {
   return (
     <div>
       <Header />
@@ -12,4 +12,4 @@ const ChatLayout = () => {
   );
 };
 
-export default ChatLayout;
+export default ChatArea;
