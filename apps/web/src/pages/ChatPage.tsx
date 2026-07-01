@@ -3,9 +3,11 @@ import SideBar from "../components/chat/SideBar";
 
 const ChatPage = () => {
   return (
-    <div>
+    <div className="flex h-screen bg-background text-foreground">
       <SideBar />
-      <ChatArea />
+      <div className="flex-1">
+        <ChatArea />
+      </div>
     </div>
   );
 };

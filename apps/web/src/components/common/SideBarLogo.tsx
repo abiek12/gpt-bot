@@ -7,7 +7,7 @@ const SideBarLogo = () => {
       <div className="logo">
         <OpenAiLogoIcon size={28} weight="light" />
       </div>
-      <div className="">
+      <div className="cursor-pointer">
         <SidebarSimpleIcon size={20} weight="thin" />
       </div>
     </div>

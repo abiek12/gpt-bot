@@ -5,7 +5,7 @@ import NewChatButton from "./Sidebar/NewChatButton";
 
 const SideBar = () => {
   return (
-    <aside className="w-72 flex flex-col border-r border-sidebar-border bg-sidebar">
+    <aside className="w-72 h-full flex flex-col border-r border-sidebar-border bg-sidebar text-sm">
       <div className="p-4">
         <SideBarLogo />
       </div>
@@ -14,7 +14,7 @@ const SideBar = () => {
         <NewChatButton />
       </div>
 
-      <div className="flex-1 overflow-y-auto px-2">
+      <div className="flex-1 overflow-y-auto p-4">
         <ConversationItem />
         <ConversationItem />
         <ConversationItem />

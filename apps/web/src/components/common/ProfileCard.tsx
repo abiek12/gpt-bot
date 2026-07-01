@@ -3,7 +3,7 @@ import { UserCircleIcon } from "@phosphor-icons/react/dist/ssr";
 const ProfileCard = () => {
   return (
     <div className="flex justify-start items-center gap-4">
-      <div className="profile-icon">
+      <div className="profile-icon cursor-pointer">
         <UserCircleIcon size={28} weight="duotone" />
       </div>
 
