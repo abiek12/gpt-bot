@@ -18,6 +18,14 @@ const SideBar = () => {
         <ConversationItem />
         <ConversationItem />
       </div>
+
+      <div className="profile">
+        <div className="icon">Icon</div>
+        <div className="details">
+          <div className="name">Abhishek pp</div>
+          <div className="plan">Go</div>
+        </div>
+      </div>
     </div>
   );
 };
