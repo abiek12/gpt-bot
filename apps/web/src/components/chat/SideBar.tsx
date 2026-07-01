@@ -5,18 +5,24 @@ import NewChatButton from "./Sidebar/NewChatButton";
 
 const SideBar = () => {
   return (
-    <aside>
-      <SideBarLogo />
+    <aside className="w-72 flex flex-col border-r border-sidebar-border bg-sidebar">
+      <div className="p-4">
+        <SideBarLogo />
+      </div>
 
-      <NewChatButton />
+      <div className="p-4">
+        <NewChatButton />
+      </div>
 
-      <div>
+      <div className="flex-1 overflow-y-auto px-2">
         <ConversationItem />
         <ConversationItem />
         <ConversationItem />
       </div>
 
-      <ProfileCard />
+      <div className="border-t border-sidebar-border p-4">
+        <ProfileCard />
+      </div>
     </aside>
   );
 };
