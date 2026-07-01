@@ -1,9 +1,11 @@
+import ChatPage from "./pages/ChatPage";
+
 function App() {
   return (
     <>
       <div>
         <h1 className="text-green-800 text-8xl font-bold">
-          Welcome to GPT BOT
+          <ChatPage />
         </h1>
       </div>
     </>
