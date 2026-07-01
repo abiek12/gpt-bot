@@ -8,6 +8,11 @@
     "allowArbitraryExtensions": true,
     "skipLibCheck": true,
 
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+    },
+
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -20,7 +25,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
   },
-  "include": ["src"]
+  "include": ["src"],
 }
