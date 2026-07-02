@@ -1,5 +1,4 @@
 import Header from "./Header/Header";
-import ChatInput from "./Input/ChatInput";
 import EmptyState from "./Message/EmptyState";
 
 const ChatArea = () => {
@@ -10,8 +9,6 @@ const ChatArea = () => {
       <main className="flex-1 overflow-y-auto">
         <EmptyState />
       </main>
-
-      <ChatInput />
     </section>
   );
 };
