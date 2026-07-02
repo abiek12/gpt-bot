@@ -2,7 +2,7 @@ import ChatPage from "./pages/ChatPage";
 
 function App() {
   return (
-    <div className="">
+    <div className="overflow-x-hidden">
       <ChatPage />
     </div>
   );
