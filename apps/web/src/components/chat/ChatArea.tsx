@@ -4,11 +4,15 @@ import EmptyState from "./Message/EmptyState";
 
 const ChatArea = () => {
   return (
-    <div>
+    <section className="flex flex-col h-full bg-background">
       <Header />
-      <EmptyState />
+
+      <main className="flex-1 overflow-y-auto">
+        <EmptyState />
+      </main>
+
       <ChatInput />
-    </div>
+    </section>
   );
 };
 

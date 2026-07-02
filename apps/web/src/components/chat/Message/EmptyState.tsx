@@ -1,9 +1,5 @@
 const EmptyState = () => {
-  return (
-    <div>
-      <h1>Empty State</h1>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default EmptyState;
