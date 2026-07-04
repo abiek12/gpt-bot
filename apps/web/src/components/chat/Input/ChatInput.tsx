@@ -76,6 +76,7 @@ const ChatInput = () => {
             flex
             items-center
             justify-center
+            hover:bg-green-700
           "
         >
           <PaperPlaneTiltIcon
