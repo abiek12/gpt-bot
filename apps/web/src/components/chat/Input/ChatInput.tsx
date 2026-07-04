@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { PaperPlaneTiltIcon, PlusIcon } from "@phosphor-icons/react";
 
-export default function PromptInput() {
+const ChatInput = () => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -87,4 +87,6 @@ export default function PromptInput() {
       </div>
     </div>
   );
-}
+};
+
+export default ChatInput;
