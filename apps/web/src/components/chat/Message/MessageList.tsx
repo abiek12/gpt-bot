@@ -10,7 +10,7 @@ const MessageList = () => {
   return (
     <div className="container mx-auto max-w-3xl h-full flex flex-col justify-between py-4">
       {/* Message container */}
-      <div className="message-container flex flex-col gap-12 pb-40">
+      <div className="message-container flex flex-col gap-8 pb-40">
         {messages.map((message: Message) =>
           message.role === "user" ? (
             <MessageBubble key={message.id} message={message} />
