@@ -1,5 +1,8 @@
 import { useChatStore } from "../../../stores/chat.store";
+import type { Message } from "../../../types/chat";
 import ChatInput from "../Input/ChatInput";
+import GptMessage from "./GptMessage";
+import MessageBubble from "./MessageBubble";
 
 const MessageList = () => {
   const messages = useChatStore((state) => state.messages);
@@ -8,17 +11,13 @@ const MessageList = () => {
     <div className="container mx-auto max-w-3xl h-full flex flex-col justify-between py-4">
       {/* Message container */}
       <div className="message-container flex flex-col gap-16 pb-40">
-        {/* My message */}
-        <p className="bg-input p-4 px-6 rounded-3xl ml-auto max-w-fit">
-          Hello how are you ?
-        </p>
-
-        {/* Agent message */}
-        {messages.map((message) => (
-          <p key={message.id} className="mr-auto max-w-fit">
-            {message.content}
-          </p>
-        ))}
+        {messages.map((message: Message) =>
+          message.role === "user" ? (
+            <MessageBubble key={message.id} message={message} />
+          ) : (
+            <GptMessage key={message.id} message={message} />
+          ),
+        )}
       </div>
 
       {/* Input container */}
