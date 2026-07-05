@@ -97,7 +97,7 @@ const ChatInput = () => {
             justify-center
             hover:bg-green-700
           "
-          onSubmit={handleSubmit}
+          onClick={handleSubmit}
         >
           <PaperPlaneTiltIcon
             size={18}
