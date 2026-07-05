@@ -22,7 +22,7 @@ const MessageList = () => {
 
       {/* Input container */}
       <div className="fixed w-full max-w-3xl bottom-0 pb-2 bg-background rounded-t-[32px]">
-        <ChatInput />
+        <ChatInput conversationId={messages[0].conversationId} />
       </div>
     </div>
   );

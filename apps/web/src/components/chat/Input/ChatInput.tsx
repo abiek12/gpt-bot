@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { PaperPlaneTiltIcon, PlusIcon } from "@phosphor-icons/react";
 import { useChatStore } from "../../../stores/chat.store";
 
-const ChatInput = () => {
+const ChatInput = ({ conversationId }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [input, setInput] = useState("");
   const addMessages = useChatStore((state) => state.addMessage);
@@ -14,7 +14,7 @@ const ChatInput = () => {
       id: crypto.randomUUID(),
       role: "user",
       content: input,
-      conversationId: crypto.randomUUID(),
+      conversationId,
       createdAt: new Date(),
     });
 
