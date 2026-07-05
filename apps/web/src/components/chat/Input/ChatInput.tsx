@@ -1,8 +1,25 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PaperPlaneTiltIcon, PlusIcon } from "@phosphor-icons/react";
+import { useChatStore } from "../../../stores/chat.store";
 
 const ChatInput = () => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [input, setInput] = useState("");
+  const addMessages = useChatStore((state) => state.addMessage);
+
+  const handleSubmit = () => {
+    if (!input.trim()) return;
+
+    addMessages({
+      id: crypto.randomUUID(),
+      role: "user",
+      content: input,
+      conversationId: crypto.randomUUID(),
+      createdAt: new Date(),
+    });
+
+    setInput("");
+  };
 
   useEffect(() => {
     const textarea = textareaRef.current;
@@ -45,6 +62,8 @@ const ChatInput = () => {
           ref={textareaRef}
           rows={1}
           placeholder="Ask anything..."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
           className="
             w-full
             resize-none
@@ -61,7 +80,7 @@ const ChatInput = () => {
         />
       </div>
 
-      {/* Footer */}
+      {/* Input Area */}
       <div className="mt-3 flex items-center justify-between">
         <button className="text-neutral-400 hover:text-white cursor-pointer">
           <PlusIcon size={22} />
@@ -78,6 +97,7 @@ const ChatInput = () => {
             justify-center
             hover:bg-green-700
           "
+          onSubmit={handleSubmit}
         >
           <PaperPlaneTiltIcon
             size={18}
