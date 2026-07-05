@@ -1,6 +1,6 @@
 const MessageBubble = ({ message }) => {
   return (
-    <div className="bg-input px-6 py-4 rounded-2xl ml-auto max-w-lg text-left leading-relaxed">
+    <div className="bg-input px-6 py-4 rounded-2xl ml-auto w-fit max-w-lg text-left leading-relaxed">
       {message.content}
     </div>
   );
