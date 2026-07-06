@@ -20,7 +20,10 @@ const MessageList = () => {
   }, [messages]);
 
   return (
-    <div ref={containerRef} className="h-full overflow-y-auto scrollbar-chat">
+    <div
+      ref={containerRef}
+      className="h-full overflow-y-auto overflow-x-hidden scrollbar-chat"
+    >
       <div className="mx-auto w-full max-w-3xl space-y-8 py-6">
         {messages.map((message: Message) => (
           <div key={message.id}>

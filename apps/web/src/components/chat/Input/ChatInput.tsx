@@ -23,22 +23,13 @@ const ChatInput = ({ conversationId }) => {
 
   useEffect(() => {
     const textarea = textareaRef.current;
+
     if (!textarea) return;
 
-    const resize = () => {
-      textarea.style.height = "0px";
+    textarea.style.height = "0px";
 
-      const height = Math.min(textarea.scrollHeight, 220);
-
-      textarea.style.height = `${height}px`;
-    };
-
-    resize();
-
-    textarea.addEventListener("input", resize);
-
-    return () => textarea.removeEventListener("input", resize);
-  }, []);
+    textarea.style.height = `${Math.min(textarea.scrollHeight, 220)}px`;
+  }, [input]);
 
   return (
     <div
