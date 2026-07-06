@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { PaperPlaneTiltIcon, PlusIcon } from "@phosphor-icons/react";
 import { useChatStore } from "../../../stores/chat.store";
 
@@ -19,6 +19,14 @@ const ChatInput = ({ conversationId }) => {
     });
 
     setInput("");
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key !== "Enter") return;
+    if (e.shiftKey) return;
+    e.preventDefault();
+    if (!input.trim()) return;
+    handleSubmit();
   };
 
   useEffect(() => {
@@ -55,6 +63,7 @@ const ChatInput = ({ conversationId }) => {
           placeholder="Ask anything..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
           className="
             w-full
             resize-none
