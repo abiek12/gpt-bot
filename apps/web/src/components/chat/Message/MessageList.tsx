@@ -1,29 +1,29 @@
 import { useEffect, useRef } from "react";
-import { useChatStore } from "../../../stores/chat.store";
 import type { Message } from "../../../types/chat";
 import GptMessage from "./GptMessage";
 import MessageBubble from "./MessageBubble";
+import { useChatStore } from "../../../stores/chat.store";
 
 const MessageList = () => {
   const messages = useChatStore((state) => state.messages);
-  const lastMessageRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    lastMessageRef.current?.scrollIntoView({
+    const container = containerRef.current;
+
+    if (!container) return;
+
+    container.scrollTo({
+      top: container.scrollHeight,
       behavior: "smooth",
-      block: "end",
     });
   }, [messages]);
 
   return (
-    <div className="container mx-auto max-w-3xl h-full flex flex-col justify-between py-4">
-      {/* Message container */}
-      <div className="message-container flex flex-col gap-8 pb-4">
-        {messages.map((message: Message, idx) => (
-          <div
-            key={message.id}
-            ref={idx === messages.length - 1 ? lastMessageRef : null}
-          >
+    <div ref={containerRef} className="h-full overflow-y-auto scrollbar-chat">
+      <div className="mx-auto w-full max-w-3xl space-y-8 py-6">
+        {messages.map((message: Message) => (
+          <div key={message.id}>
             {message.role === "user" ? (
               <MessageBubble message={message} />
             ) : (

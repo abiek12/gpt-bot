@@ -11,7 +11,7 @@ const ChatArea = () => {
     <section className="flex flex-col h-full bg-background">
       <Header />
 
-      <main className="flex-1 overflow-y-auto overflow-x-hidden">
+      <main className="flex-1 overflow-hidden">
         {messages.length === 0 ? <EmptyState /> : <MessageList />}
       </main>
 
