@@ -16,9 +16,6 @@ export const generateMessage = async (userQuery: string) => {
     },
   ];
 
-  console.log(userQuery);
-  console.log("messages:", messages);
-
   const tools = [
     {
       type: "function",
