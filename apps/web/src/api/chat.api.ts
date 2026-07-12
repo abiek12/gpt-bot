@@ -13,7 +13,7 @@ export const sendMessage = async (body: {userQuery: string}) => {
     throw new Error("Failed to send message!")
   }
 
-  console.log(res);
+  // console.log(res);
 
   return res.json();
 }
