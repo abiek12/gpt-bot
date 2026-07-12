@@ -39,7 +39,7 @@ export const generateMessage = async (userQuery: string) => {
 
   messages.push({
     role: "user",
-    content: userQuery,
+    content: userQuery
   });
 
   while (true) {

@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { PaperPlaneTiltIcon, PlusIcon } from "@phosphor-icons/react";
 import { useChatStore } from "../../../stores/chat.store";
+import { sendMessage } from "../../../api/chat.api";
 
 const ChatInput = ({ conversationId }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [input, setInput] = useState("");
   const addMessages = useChatStore((state) => state.addMessage);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!input.trim()) return;
 
     addMessages({
@@ -16,6 +17,18 @@ const ChatInput = ({ conversationId }) => {
       content: input,
       conversationId,
       createdAt: new Date(),
+    });
+
+    // Api call
+    const result = await sendMessage({userQuery: input})
+
+    // Append gpt message
+    addMessages({
+      id: crypto.randomUUID(),
+      role: 'assistant',
+      content: result,
+      conversationId,
+      createdAt: new Date()
     });
 
     setInput("");
