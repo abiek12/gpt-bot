@@ -12,17 +12,18 @@ const ChatArea = () => {
       <Header />
 
       <main className="flex-1 overflow-hidden">
-        {messages.length === 0 ? <EmptyState /> : (
-          <>
-            <MessageList />
-            <footer className="bg-background p-2">
-              <div className="mx-auto w-full max-w-3xl">
-                <ChatInput />
-              </div>
-            </footer>
-          </>
-        )}
+        {messages.length === 0 ? <EmptyState /> : <MessageList />}
       </main>
+
+      {
+        messages.length > 0 && (
+          <footer className="bg-background p-2">
+            <div className="mx-auto w-full max-w-3xl">
+              <ChatInput />
+            </div>
+          </footer>
+        )
+      }
     </section>
   );
 };

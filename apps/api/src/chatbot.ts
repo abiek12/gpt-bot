@@ -5,14 +5,32 @@ const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 const tvly = tavily({ apiKey: process.env.TAVILY_API_KEY });
 
 export const generateMessage = async (userQuery: string) => {
+  const currentDate = new Date().toUTCString();
   const messages: any = [
     {
       role: "system",
-      content: `You're a smart personal assistant who answer the asked questions.
-        You have access to following tools:
-          1. webSearch({query}): {query: string} // Search the latest information and real time data from the internet.
-          Current Date and Time: ${new Date().toUTCString()}
-      `,
+      content: `You are a helpful AI assistant.
+
+      Answer questions directly whenever your own knowledge is sufficient.
+
+      Use the web search tool only when the user's request depends on current, real-time, local, or otherwise unavailable information, including:
+
+      - Breaking or recent news
+      - Weather
+      - Live sports scores
+      - Stock prices
+      - Current exchange rates
+      - Local businesses
+      - Current events
+      - Recently released products or software
+      - Information that may have changed over time
+
+      Do not use web search for common knowledge, reasoning, programming help, mathematics, writing assistance, or explanations.
+
+      Do not mention internal tools or how you obtained the information unless the user explicitly asks.
+
+      Today's UTC date and time:
+      ${currentDate}`
     },
   ];
 
