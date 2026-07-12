@@ -19,6 +19,9 @@ const ChatInput = ({ conversationId }) => {
       createdAt: new Date(),
     });
 
+    // clear input
+    setInput("");
+
     // Api call
     const result = await sendMessage({userQuery: input})
 
@@ -31,7 +34,6 @@ const ChatInput = ({ conversationId }) => {
       createdAt: new Date()
     });
 
-    setInput("");
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
