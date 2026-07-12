@@ -1,6 +1,6 @@
 import type { Message } from "../../types/chat";
 
-const conversationId = crypto.randomUUID();
+export const conversationId = crypto.randomUUID();
 
 export const mockMessage: Message[] = [
   {

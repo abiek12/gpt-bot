@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import type { Message } from "../types/chat";
-import { mockMessage } from "../utils/mock/messages";
 
 interface ChatStore {
   messages: Message[];
@@ -9,7 +8,7 @@ interface ChatStore {
 }
 
 export const useChatStore = create<ChatStore>((set) => ({
-  messages: mockMessage,
+  messages: [],
 
   addMessage: (message) =>
     set((state) => ({

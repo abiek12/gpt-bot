@@ -19,8 +19,8 @@ const EmptyState = () => {
         <ChatInput />
       </div>
       <div className="suggestions flex max-w-md flex-wrap gap-2 mt-6 items-center justify-center">
-        {suggestions.map((i) => (
-          <Card className="cursor-pointer transition hover:bg-accent px-4 py-2 rounded-lg">
+        {suggestions.map((i, idx) => (
+          <Card key={idx} className="cursor-pointer transition hover:bg-accent px-4 py-2 rounded-lg">
             {i}
           </Card>
         ))}

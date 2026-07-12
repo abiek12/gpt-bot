@@ -2,8 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { PaperPlaneTiltIcon, PlusIcon } from "@phosphor-icons/react";
 import { useChatStore } from "../../../stores/chat.store";
 import { sendMessage } from "../../../api/chat.api";
+import { conversationId } from "../../../utils/mock/messages";
 
-const ChatInput = ({ conversationId }) => {
+const ChatInput = () => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [input, setInput] = useState("");
   const addMessages = useChatStore((state) => state.addMessage);
