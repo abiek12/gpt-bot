@@ -30,7 +30,7 @@ const ChatInput = () => {
     addMessages({
       id: crypto.randomUUID(),
       role: 'assistant',
-      content: result,
+      content: result.data,
       conversationId,
       createdAt: new Date()
     });
