@@ -9,3 +9,13 @@ export const ChatRequestSchema = z.object({
 })
 
 export type ChatRequest = z.infer<typeof ChatRequestSchema>;
+
+
+export const ChatResponseSchema = z.object({
+  success: z.boolean(),
+  statusCode: z.number(),
+  data: z.string().nullable(),
+  error: z.string().nullable()
+})
+
+export type ChatResponse = z.infer<typeof ChatResponseSchema>;
