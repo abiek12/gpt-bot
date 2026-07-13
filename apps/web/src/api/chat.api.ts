@@ -2,9 +2,9 @@ import { ChatRequestSchema, ChatResponseSchema } from "@repo/shared";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-export const sendMessage = async (body: { userQuery: string }) => {
+export const sendMessage = async (message: { message: string }) => {
   // Request Validation
-  const request = ChatRequestSchema.parse(body);
+  const request = ChatRequestSchema.parse(message);
 
   const res = await fetch(`${API_URL}/chat`, {
     method: "POST",

@@ -24,7 +24,7 @@ const ChatInput = () => {
     setInput("");
 
     // Api call
-    const result = await sendMessage({userQuery: input})
+    const result = await sendMessage({message: input})
 
     // Append gpt message
     addMessages({
