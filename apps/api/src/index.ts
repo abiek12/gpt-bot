@@ -31,7 +31,8 @@ app.post("/chat", async (c) => {
      );
   }
 
-  const result = await generateMessage(payload.userQuery);
+  const { message } = validations.data;
+  const result = await generateMessage(message);
   const response: ChatResponse = {
     success: true,
     statusCode: 200,
