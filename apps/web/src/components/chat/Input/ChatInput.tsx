@@ -8,6 +8,7 @@ const ChatInput = () => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [input, setInput] = useState("");
   const addMessages = useChatStore((state) => state.addMessage);
+  const setChatLoading = useChatStore((state) => state.setChatLoading);
 
   const handleSubmit = async () => {
     if (!input.trim()) return;
@@ -23,18 +24,26 @@ const ChatInput = () => {
     // clear input
     setInput("");
 
-    // Api call
-    const result = await sendMessage({message: input})
+    try {
+      // updating store
+      setChatLoading(true);
 
-    // Append gpt message
-    addMessages({
-      id: crypto.randomUUID(),
-      role: 'assistant',
-      content: result.data,
-      conversationId,
-      createdAt: new Date()
-    });
+      // Api call
+      const result = await sendMessage({message: input})
 
+      // Append gpt message
+      addMessages({
+        id: crypto.randomUUID(),
+        role: 'assistant',
+        content: result.data,
+        conversationId,
+        createdAt: new Date()
+      });
+    } catch (err) {
+      console.error("Error while generating messages:", err);
+    } finally {
+      setChatLoading(false);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {

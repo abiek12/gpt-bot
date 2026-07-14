@@ -6,6 +6,7 @@ import { useChatStore } from "../../../stores/chat.store";
 
 const MessageList = () => {
   const messages = useChatStore((state) => state.messages);
+  const chatLoading = useChatStore((state) => state.chatLoading)
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -30,10 +31,18 @@ const MessageList = () => {
             {message.role === "user" ? (
               <MessageBubble message={message} />
             ) : (
-              <GptMessage message={message} />
+                <GptMessage message={message} />
             )}
           </div>
         ))}
+
+        {
+          chatLoading && (
+            <div className="animate-pulse">
+              <h1>Thinking...</h1>
+            </div>
+          )
+        }
       </div>
     </div>
   );
