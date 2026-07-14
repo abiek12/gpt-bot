@@ -6,6 +6,7 @@ const tvly = tavily({ apiKey: process.env.TAVILY_API_KEY });
 
 export const generateMessage = async (userQuery: string) => {
   const currentDate = new Date().toUTCString();
+  const timeZone = 'asia/kolkata';
   const messages: any = [
     {
       role: "system",
@@ -26,7 +27,9 @@ export const generateMessage = async (userQuery: string) => {
                 A: The current Prime Minister of India is Narendra M
                 Q: Tell me the latest IT news.
                 A: (use the search tool to get the latest n
-                current date and time: ${currentDate}`,
+                current date and time: ${currentDate}
+                timezone: ${timeZone}
+                `,
     },
   ];
 
