@@ -1,3 +1,4 @@
+import { conversationsMocks } from "../../utils/mock/conversations";
 import ProfileCard from "../common/ProfileCard";
 import SideBarLogo from "../common/SideBarLogo";
 import ConversationItem from "./Sidebar/ConversationItem";
@@ -15,9 +16,11 @@ const SideBar = () => {
       </div>
 
       <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-2">
-        <ConversationItem />
-        <ConversationItem />
-        <ConversationItem />
+        {
+          conversationsMocks.map((i) => (
+            <ConversationItem title={i.title}/>
+          ))
+        }
       </div>
 
       <div className="border-t border-sidebar-border p-4">

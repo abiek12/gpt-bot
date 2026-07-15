@@ -1,4 +1,4 @@
-export const conversations = [
+export const conversationsMocks = [
   {
     id: "1",
     title: "React Interview Preparation",
