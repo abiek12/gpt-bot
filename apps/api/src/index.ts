@@ -14,6 +14,8 @@ app.get("/", (c) => {
 
 app.post("/chat", async (c) => {
   const payload = await c.req.json();
+
+  // body validation
   const validations = ChatRequestSchema.safeParse(payload);
 
   if (!validations.success) {
@@ -31,8 +33,8 @@ app.post("/chat", async (c) => {
      );
   }
 
-  const { message } = validations.data;
-  const result = await generateMessage(message);
+  const { message, conversationId } = validations.data;
+  const result = await generateMessage(message, conversationId);
   const response: ChatResponse = {
     success: true,
     statusCode: 200,

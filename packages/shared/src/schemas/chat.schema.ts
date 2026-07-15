@@ -5,7 +5,10 @@ export const ChatRequestSchema = z.object({
     .string()
     .trim()
     .min(1, "Message can't be empty!")
-    .max(10000, "Message can't be long!")
+    .max(10000, "Message can't be long!"),
+  conversationId: z
+    .string()
+    .trim()
 })
 
 export type ChatRequest = z.infer<typeof ChatRequestSchema>;

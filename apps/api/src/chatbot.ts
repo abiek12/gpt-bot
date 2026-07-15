@@ -1,13 +1,15 @@
 import Groq from "groq-sdk";
 import { tavily } from "@tavily/core";
+import NodeCache from "node-cache";
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 const tvly = tavily({ apiKey: process.env.TAVILY_API_KEY });
+const cache = new NodeCache({stdTTL: 60 * 60 * 24})
 
-export const generateMessage = async (userQuery: string) => {
+export const generateMessage = async (userQuery: string, conversationId: string) => {
   const currentDate = new Date().toUTCString();
   const timeZone = 'asia/kolkata';
-  const messages: any = [
+  const baseMessage: any = [
     {
       role: "system",
       content: `You are a smart personal assistant.
@@ -33,6 +35,10 @@ export const generateMessage = async (userQuery: string) => {
     },
   ];
 
+  // Node cache
+  const messages = cache.get(conversationId) ?? baseMessage;
+
+
   const tools = [
     {
       type: "function",
@@ -54,7 +60,7 @@ export const generateMessage = async (userQuery: string) => {
     },
   ];
 
-  messages.push({
+  baseMessage.push({
     role: "user",
     content: userQuery
   });
@@ -63,11 +69,11 @@ export const generateMessage = async (userQuery: string) => {
     const completions1 = await groq.chat.completions.create({
       model: "llama-3.3-70b-versatile",
       temperature: 0,
-      messages: messages,
+      messages: baseMessage,
       tools: tools,
       tool_choice: "auto",
     });
-    messages.push(completions1.choices[0].message);
+    baseMessage.push(completions1.choices[0].message);
 
     const toolCalling = completions1.choices[0].message.tool_calls;
     if (!toolCalling) {
