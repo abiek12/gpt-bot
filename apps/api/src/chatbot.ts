@@ -38,7 +38,6 @@ export const generateMessage = async (userQuery: string, conversationId: string)
   // Node cache
   const messages = cache.get(conversationId) ?? baseMessage;
 
-
   const tools = [
     {
       type: "function",
@@ -60,7 +59,7 @@ export const generateMessage = async (userQuery: string, conversationId: string)
     },
   ];
 
-  baseMessage.push({
+  messages.push({
     role: "user",
     content: userQuery
   });
@@ -69,14 +68,17 @@ export const generateMessage = async (userQuery: string, conversationId: string)
     const completions1 = await groq.chat.completions.create({
       model: "llama-3.3-70b-versatile",
       temperature: 0,
-      messages: baseMessage,
+      messages: messages,
       tools: tools,
       tool_choice: "auto",
     });
-    baseMessage.push(completions1.choices[0].message);
+    messages.push(completions1.choices[0].message);
 
     const toolCalling = completions1.choices[0].message.tool_calls;
     if (!toolCalling) {
+      // here we end chatbot response
+      cache.set(conversationId, messages);
+
       return completions1.choices[0].message.content;
     }
     console.log("Tool calling...");

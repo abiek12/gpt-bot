@@ -29,7 +29,7 @@ const ChatInput = () => {
       setChatLoading(true);
 
       // Api call
-      const result = await sendMessage({message: input})
+      const result = await sendMessage(input, conversationId);
 
       // Append gpt message
       addMessages({
