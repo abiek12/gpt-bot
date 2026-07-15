@@ -17,8 +17,10 @@ const SideBar = () => {
 
       <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-2">
         {
-          conversationsMocks.map((i) => (
-            <ConversationItem title={i.title}/>
+          conversationsMocks.map((i, idx) => (
+            <div key={idx}>
+              <ConversationItem title={i.title}/>
+            </div>
           ))
         }
       </div>

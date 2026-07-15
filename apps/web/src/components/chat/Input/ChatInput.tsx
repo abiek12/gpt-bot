@@ -8,10 +8,11 @@ const ChatInput = () => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [input, setInput] = useState("");
   const addMessages = useChatStore((state) => state.addMessage);
+  const chatLoading = useChatStore((state) => state.chatLoading);
   const setChatLoading = useChatStore((state) => state.setChatLoading);
 
   const handleSubmit = async () => {
-    if (!input.trim()) return;
+    if (!input.trim() || chatLoading) return;
 
     addMessages({
       id: crypto.randomUUID(),
@@ -112,6 +113,7 @@ const ChatInput = () => {
         </button>
 
         <button
+          disabled={chatLoading}
           className="
             h-10
             w-10
@@ -121,6 +123,8 @@ const ChatInput = () => {
             items-center
             justify-center
             hover:bg-green-700
+
+            disabled:cursor-not-allowed
           "
           onClick={handleSubmit}
         >
