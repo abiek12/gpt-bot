@@ -4,7 +4,7 @@ import NodeCache from "node-cache";
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 const tvly = tavily({ apiKey: process.env.TAVILY_API_KEY });
-const cache = new NodeCache({stdTTL: 60 * 60 * 24})
+const cache = new NodeCache({ stdTTL: 60 * 60 * 24 })
 
 export const generateMessage = async (userQuery: string, conversationId: string) => {
   const currentDate = new Date().toUTCString();
@@ -64,7 +64,16 @@ export const generateMessage = async (userQuery: string, conversationId: string)
     content: userQuery
   });
 
+  const MAX_RETRY = 10;
+  let currentCount = 0;
   while (true) {
+    if (currentCount > MAX_RETRY) {
+      console.log("Max retry exceeded!");
+      return "I could not find the result, please try again!"
+    };
+
+    currentCount++;
+
     const completions1 = await groq.chat.completions.create({
       model: "llama-3.3-70b-versatile",
       temperature: 0,
